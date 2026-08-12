@@ -6,7 +6,8 @@ create temporary table temp_session_pageview as
 with ranked_pageviews as (
 
 select 
-	wp.website_session_id, 
+	wp.website_session_id,
+	wp.created_at,
 	pageview_url, 
 	stage_group,
 	row_number() over (partition by wp.website_session_id order by wp.created_at) as page_order,
